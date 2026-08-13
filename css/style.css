@@ -533,3 +533,80 @@ p { color: var(--ink-soft); }
   object-fit: cover;
   border-radius: var(--radius);
 }
+
+/* ---------- Photo hero banner (with overlay text) ---------- */
+.photo-hero-banner {
+  position: relative;
+  height: 70vh;
+  min-height: 420px;
+  max-height: 640px;
+  overflow: hidden;
+}
+.photo-hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-hero-banner .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,30,50,0.15), rgba(15,25,45,0.55));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+.photo-hero-banner h1 {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  max-width: 780px;
+  line-height: 1.15;
+}
+.photo-hero-banner h1 em {
+  font-style: normal;
+  color: var(--sky);
+}
+
+/* ---------- Stats table ---------- */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.stats-table th, .stats-table td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.stats-table th {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: #fff;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+.stats-table tr:nth-child(even) td { background: var(--sky-tint); }
+.stats-table td { color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+
+/* ---------- Testimonial cards ---------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) { .testimonial-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .testimonial-grid { grid-template-columns: 1fr; } }
+.testimonial-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.testimonial-card .stars { color: var(--blue); letter-spacing: 2px; margin-bottom: 10px; }
+.testimonial-card p { font-size: 0.9rem; margin-bottom: 14px; }
+.testimonial-card .name { font-family: var(--font-display); text-transform: uppercase; font-size: 0.85rem; color: var(--navy); }
