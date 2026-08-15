@@ -463,3 +463,55 @@ button {
     }
 
 }
+
+/* =========================================
+   SVG SIZE FIX
+   Prevent global SVG rules from stretching icons
+========================================= */
+
+.feature-item .icon {
+    width: 48px !important;
+    height: 48px !important;
+
+    max-width: 48px !important;
+    max-height: 48px !important;
+
+    display: block;
+
+    flex: 0 0 48px;
+
+    margin-bottom: 18px;
+}
+
+
+.google-badge svg {
+    width: 16px !important;
+    height: 16px !important;
+
+    max-width: 16px !important;
+    max-height: 16px !important;
+
+    display: inline-block;
+
+    flex: 0 0 16px;
+}
+
+
+/* Keep other inline SVGs from becoming full-width */
+svg {
+    max-width: 100%;
+}
+
+
+/* But don't allow feature icons to inherit the above */
+.feature-item svg.icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+
+/* Google badge must remain small */
+.google-badge svg {
+    width: 16px !important;
+    height: 16px !important;
+}
