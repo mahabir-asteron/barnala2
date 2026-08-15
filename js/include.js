@@ -3,16 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
     var headerSlot = document.getElementById("header-placeholder");
     var footerSlot = document.getElementById("footer-placeholder");
 
-    /* LOAD HEADER */
+    /* =========================
+       LOAD HEADER
+    ========================= */
 
     if (headerSlot) {
 
         fetch("header.html")
-
             .then(function (res) {
+                if (!res.ok) {
+                    throw new Error("Header could not be loaded");
+                }
+
                 return res.text();
             })
-
             .then(function (html) {
 
                 headerSlot.outerHTML = html;
@@ -20,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 setupMobileNav();
 
             })
-
             .catch(function (err) {
 
                 console.error(
@@ -33,22 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* LOAD FOOTER */
+    /* =========================
+       LOAD FOOTER
+    ========================= */
 
     if (footerSlot) {
 
         fetch("footer.html")
-
             .then(function (res) {
+                if (!res.ok) {
+                    throw new Error("Footer could not be loaded");
+                }
+
                 return res.text();
             })
-
             .then(function (html) {
 
                 footerSlot.outerHTML = html;
 
             })
-
             .catch(function (err) {
 
                 console.error(
@@ -63,7 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* MOBILE MENU */
+/* =========================
+   MOBILE NAVIGATION
+========================= */
 
 function setupMobileNav() {
 
@@ -80,6 +88,7 @@ function setupMobileNav() {
     toggle.addEventListener("click", function () {
 
         nav.classList.toggle("nav-open");
+        toggle.classList.toggle("active");
 
     });
 
@@ -96,46 +105,36 @@ function setupMobileNav() {
             return;
         }
 
-
         item.classList.add("has-dropdown");
 
+        var link = item.querySelector(":scope > a");
+
+        if (!link) {
+            return;
+        }
 
         var caret = document.createElement("button");
 
         caret.type = "button";
-
         caret.className = "nav-caret";
-
-        caret.setAttribute(
-            "aria-label",
-            "Show submenu"
-        );
+        caret.setAttribute("aria-label", "Show submenu");
 
         caret.innerHTML =
             '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">' +
             '<path d="M6 9l6 6 6-6"/>' +
             '</svg>';
 
-
-        var link = item.querySelector("a");
-
-        if (link) {
-
-            link.insertAdjacentElement(
-                "afterend",
-                caret
-            );
-
-        }
-
+        link.insertAdjacentElement(
+            "afterend",
+            caret
+        );
 
         caret.addEventListener("click", function (e) {
 
             e.preventDefault();
+            e.stopPropagation();
 
-            item.classList.toggle(
-                "mobile-expanded"
-            );
+            item.classList.toggle("mobile-expanded");
 
         });
 
