@@ -191,6 +191,10 @@ p { color: var(--ink-soft); }
   letter-spacing: 0.03em;
 }
 
+/* This caret button is only for the mobile menu — hidden by default
+   on desktop, made visible again inside the mobile media query below. */
+.nav-caret { display: none; }
+
 .dropdown-panel {
   display: none;
   position: absolute;
