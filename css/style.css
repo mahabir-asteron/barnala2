@@ -515,3 +515,36 @@ svg {
     width: 16px !important;
     height: 16px !important;
 }
+
+ /* =========================================
+   FINAL SVG / ICON SIZE FIX
+========================================= */
+
+.feature-item svg {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    display: block !important;
+}
+
+.feature-item .icon {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    flex: 0 0 48px !important;
+}
+
+.google-badge svg {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    display: inline-block !important;
+}
+
+/* Prevent SVGs from becoming giant */
+svg {
+    box-sizing: border-box;
+}
