@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var footerSlot = document.getElementById('footer-placeholder');
 
   if (headerSlot) {
-    fetch('/header.html')
+    fetch('header.html')
       .then(function (res) { return res.text(); })
       .then(function (html) {
         headerSlot.outerHTML = html;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (footerSlot) {
-    fetch('/footer.html')
+    fetch('footer.html')
       .then(function (res) { return res.text(); })
       .then(function (html) { footerSlot.outerHTML = html; })
       .catch(function (err) { console.error('Could not load footer.html', err); });
