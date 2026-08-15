@@ -229,9 +229,67 @@ p { color: var(--ink-soft); }
 .dropdown-col a:hover { color: var(--blue); }
 
 @media (max-width: 1100px) {
-  .main-nav { display: none; }
   .header-phone { display: none; }
-  .nav-toggle { display: block; }
+  .nav-toggle { display: block; z-index: 210; position: relative; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(27,46,92,0.16);
+    max-height: calc(100vh - 66px);
+    overflow-y: auto;
+  }
+  .main-nav.nav-open { display: block; }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 24px 28px;
+  }
+  .nav-item { width: 100%; }
+  .nav-item > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    width: 100%;
+  }
+  .nav-caret {
+    display: none;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-soft);
+    transition: transform 0.15s ease;
+  }
+  .nav-item.has-dropdown .nav-caret { display: inline-flex; }
+  .nav-item.mobile-expanded .nav-caret { transform: rotate(180deg); color: var(--blue); }
+
+  .dropdown-panel {
+    display: none;
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 4px 0 14px 12px;
+    min-width: 0;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--sky-tint);
+  }
+  .nav-item.mobile-expanded .dropdown-panel { display: flex; }
+  .dropdown-col a { padding: 7px 0; }
+  .login-item { margin-top: 14px; border: none; }
+  .login-item > a { border-bottom: none; justify-content: center; }
 }
 
 
@@ -492,16 +550,28 @@ p { color: var(--ink-soft); }
 
 /* Placeholder image block — replace with real photos */
 .img-placeholder {
-  background: repeating-linear-gradient(135deg, #eef7fd, #eef7fd 10px, #e3f0fa 10px, #e3f0fa 20px);
-  border: 1px dashed var(--sky);
+  background: var(--sky-tint);
+  border: 1.5px dashed var(--sky);
   border-radius: var(--radius);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   color: var(--ink-soft);
-  font-size: 0.8rem;
   text-align: center;
-  padding: 12px;
+  padding: 20px;
+}
+.img-placeholder svg {
+  width: 32px;
+  height: 32px;
+  color: var(--sky);
+  flex-shrink: 0;
+}
+.img-placeholder span {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  max-width: 160px;
 }
 
 /* ---------- Photo gallery grid ---------- */
@@ -605,8 +675,141 @@ p { color: var(--ink-soft); }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 22px;
 }
-.testimonial-card .stars { color: var(--blue); letter-spacing: 2px; margin-bottom: 10px; }
-.testimonial-card p { font-size: 0.9rem; margin-bottom: 14px; }
-.testimonial-card .name { font-family: var(--font-display); text-transform: uppercase; font-size: 0.85rem; color: var(--navy); }
+.testimonial-card .review-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.testimonial-card .avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.testimonial-card .review-head-text { flex: 1; min-width: 0; }
+.testimonial-card .name {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.testimonial-card .google-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+.testimonial-card .google-badge svg { width: 13px; height: 13px; }
+.testimonial-card .stars { color: #f5b400; letter-spacing: 1px; margin-bottom: 10px; font-size: 0.95rem; }
+.testimonial-card p { font-size: 0.88rem; margin-bottom: 0; }
+
+/* ---------- Price tag ---------- */
+.price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--sky-tint);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  margin: 20px 0;
+}
+.price-tag .amount {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--navy);
+}
+.price-tag .label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Check list ---------- */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+.check-list li svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+  margin-top: 2px;
+}
+
+/* ---------- FAQ ---------- */
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+.faq-item h3 {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.faq-item p { font-size: 0.92rem; margin: 0; }
+
+/* ---------- Advisor box ---------- */
+.advisor-box {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  border-radius: var(--radius);
+  padding: 32px;
+  color: #fff;
+  text-align: center;
+}
+.advisor-box h3 { color: #fff; font-size: 1.2rem; margin-bottom: 8px; }
+.advisor-box p { color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 20px; }
+.advisor-box .btn-outline { border-color: rgba(255,255,255,0.6); color: #fff; }
+.advisor-box .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+/* ---------- Student success photo pair ---------- */
+.student-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) { .student-photos { grid-template-columns: 1fr; } }
+.student-photo {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.student-photo img { width: 100%; height: 100%; object-fit: cover; }
+.student-photo .caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(15,25,45,0.75), transparent);
+  color: #fff;
+  font-size: 0.82rem;
+  padding: 10px 12px;
+}
