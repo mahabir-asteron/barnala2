@@ -1,8 +1,8 @@
 // Loads the shared header.html and footer.html into every page, then
-// wires up the mobile menu (hamburger toggle + tap-to-expand dropdowns).
-// Requires the site to be served over http/https (e.g. GitHub Pages
-// or a local dev server) — it will NOT work if you open a page by
-// double-clicking the file directly in your file system.
+// wires up the mobile menu (hamburger toggle, slide-in panel, overlay,
+// tap-to-expand dropdowns). Requires the site to be served over
+// http/https (e.g. GitHub Pages) — it will NOT work if you open a
+// page by double-clicking the file directly in your file system.
 
 document.addEventListener('DOMContentLoaded', function () {
   var headerSlot = document.getElementById('header-placeholder');
@@ -27,36 +27,57 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function setupMobileNav() {
-  var toggle = document.querySelector('.nav-toggle');
-  var nav = document.querySelector('.main-nav');
-  if (!toggle || !nav) return;
+  var menuToggle = document.getElementById('menuToggle');
+  var menu = document.getElementById('mainMenu');
+  var closeBtn = document.getElementById('menuClose');
+  var overlay = document.getElementById('menuOverlay');
+  if (!menuToggle || !menu || !closeBtn || !overlay) return;
 
-  // Hamburger opens/closes the whole mobile menu panel.
-  toggle.addEventListener('click', function () {
-    nav.classList.toggle('nav-open');
+  function closeMenu() {
+    menu.classList.remove('active');
+    overlay.classList.remove('active');
+    menuToggle.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.has-dropdown').forEach(function (item) {
+      item.classList.remove('open');
+    });
+  }
+
+  menuToggle.addEventListener('click', function () {
+    document.querySelectorAll('.has-dropdown').forEach(function (item) {
+      item.classList.remove('open');
+    });
+    menu.classList.add('active');
+    overlay.classList.add('active');
+    menuToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
   });
 
-  // Every nav item that has a dropdown gets a tap-to-expand caret,
-  // since hover doesn't work on touch screens.
-  var items = nav.querySelectorAll('.nav-item');
-  items.forEach(function (item) {
-    var panel = item.querySelector('.dropdown-panel');
-    if (!panel) return;
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
 
-    item.classList.add('has-dropdown');
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
 
-    var caret = document.createElement('button');
-    caret.type = 'button';
-    caret.className = 'nav-caret';
-    caret.setAttribute('aria-label', 'Show submenu');
-    caret.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>';
-
-    var link = item.querySelector('a');
-    link.insertAdjacentElement('afterend', caret);
-
-    caret.addEventListener('click', function (e) {
-      e.preventDefault();
-      item.classList.toggle('mobile-expanded');
+  document.querySelectorAll('#mainMenu > a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.innerWidth <= 1200) closeMenu();
     });
+  });
+
+  document.querySelectorAll('.dropdown-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      if (window.innerWidth <= 1200) {
+        e.preventDefault();
+        this.parentElement.classList.toggle('open');
+      }
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1200) {
+      closeMenu();
+    }
   });
 }
