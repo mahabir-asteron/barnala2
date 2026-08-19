@@ -65,16 +65,7 @@
     align-items:center;
     gap:4px;
     margin-left:auto;
-    /* Safety net: if items still don't all fit even after tightening
-       spacing, this lets the nav scroll sideways instead of silently
-       cutting items off past the edge of the screen. */
-    overflow-x:auto;
-    overflow-y:hidden;
-    scrollbar-width:thin;
-    -ms-overflow-style:none;
 }
-.modern-links::-webkit-scrollbar{ height:4px; }
-.modern-links::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
 
 .modern-links>a,
 .dropdown-toggle{
