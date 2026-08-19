@@ -15,26 +15,26 @@
 }
 
 .modern-nav{
-    width:min(94%,1450px);
+    width:min(97%,1650px);
     margin:auto;
-    min-height:82px;
+    min-height:78px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:40px;
+    gap:20px;
 }
 
 .modern-logo{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     text-decoration:none;
     flex-shrink:0;
 }
 
 .modern-logo img{
-    width:56px;
-    height:56px;
+    width:42px;
+    height:42px;
     object-fit:cover;
     border-radius:8px;
 }
@@ -46,25 +46,35 @@
 
 .logo-title{
     color:var(--navy);
-    font-size:22px;
+    font-size:17px;
     font-weight:800;
     line-height:1;
 }
 
 .logo-subtitle{
     color:var(--blue);
-    font-size:11px;
+    font-size:9px;
     font-weight:700;
-    letter-spacing:.6px;
-    margin-top:6px;
+    letter-spacing:.4px;
+    margin-top:4px;
+    white-space:nowrap;
 }
 
 .modern-links{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:4px;
     margin-left:auto;
+    /* Safety net: if items still don't all fit even after tightening
+       spacing, this lets the nav scroll sideways instead of silently
+       cutting items off past the edge of the screen. */
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:thin;
+    -ms-overflow-style:none;
 }
+.modern-links::-webkit-scrollbar{ height:4px; }
+.modern-links::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
 
 .modern-links>a,
 .dropdown-toggle{
@@ -74,9 +84,10 @@
     text-decoration:none;
     cursor:pointer;
     white-space:nowrap;
-    font-size:12px;
+    font-size:11px;
     font-weight:650;
-    letter-spacing:.2px;
+    letter-spacing:.1px;
+    padding:6px 7px;
     transition:.25s;
 }
 
