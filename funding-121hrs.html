@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Sponsored Enrolment | Barnala Driver Training Academy</title>
+<meta name="description" content="Apply for the Class 1 (121.5 Hrs) program with extended payment plans through private sponsored enrolment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .funding-form { display:grid; gap:20px; max-width:820px; margin:0 auto; }
+  .funding-form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:640px) { .funding-form-row { grid-template-columns:1fr; } }
+  .funding-form label { display:block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.04em; font-size:0.8rem; color:var(--navy); margin-bottom:6px; }
+  .funding-form input, .funding-form select, .funding-form textarea {
+    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:var(--radius);
+    font-family:var(--font-body); font-size:0.95rem; color:var(--ink); background:#fff;
+  }
+  .funding-form input:focus, .funding-form select:focus, .funding-form textarea:focus {
+    outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(44,111,196,0.15);
+  }
+</style>
+</head>
+<body>
 
+<div id="header-placeholder"></div>
+
+<section class="photo-hero-banner">
+  <img src="images/class1-1.webp" alt="Barnala Class 1 training truck">
+  <div class="overlay">
+    <h1>Enroll in Your Desired Class 1 121.5 Course with <em>Extended Payment Plans</em></h1>
+  </div>
+</section>
+<div class="lane-divider"></div>
+
+<section class="section" style="padding-bottom:24px;">
+  <div class="wrap" style="max-width:720px; text-align:center; margin-left:auto; margin-right:auto;">
+    <p class="eyebrow">Private Sponsored Enrolment</p>
+    <p class="lead">Apply online or in-person and get a decision in no time.</p>
+    <a href="#application-form" class="btn btn-primary">Apply Now</a>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap" style="max-width:720px;">
+    <div class="advisor-box">
+      <h3>Important Note</h3>
+      <p>M.E.L.T (Mandatory Entry-Level Training) is considered as Class 1 (121.5 Hrs) course.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="application-form">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin:0 auto 40px;">
+      <p class="eyebrow">Get Started</p>
+      <h2>Private Sponsored Request Form</h2>
+    </div>
+
+    <form class="funding-form">
+      <div class="funding-form-row">
+        <div>
+          <label>First Name</label>
+          <input type="text" placeholder="First Name" required>
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input type="text" placeholder="Last Name" required>
+        </div>
+      </div>
+      <div class="funding-form-row">
+        <div>
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(204) 555-1234" required>
+        </div>
+        <div>
+          <label>Email Address</label>
+          <input type="email" placeholder="example@email.com" required>
+        </div>
+      </div>
+      <div class="funding-form-row">
+        <div>
+          <label>Preferred Location</label>
+          <select required>
+            <option value="">Select Location</option>
+            <option>Winnipeg</option>
+            <option>Steinbach</option>
+            <option>Portage la Prairie</option>
+          </select>
+        </div>
+        <div>
+          <label>Preferred Start Date</label>
+          <input type="date">
+        </div>
+      </div>
+      <div>
+        <label>Message</label>
+        <textarea rows="6" placeholder="Write your message..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="justify-self:center; padding:16px 40px;">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Gallery</p>
+      <h2>Training in Action</h2>
+    </div>
+    <div class="photo-grid">
+      <img src="images/class1-1.webp" alt="Barnala Class 1 training truck">
+      <img src="images/gallery-2.png" alt="Barnala training truck fleet at sunset">
+      <img src="images/hero-trucks.webp" alt="Barnala Driver Training Academy truck fleet">
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/include.js"></script>
+<script>
+document.querySelector('.funding-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Thank you! Your funding request has been submitted successfully. Our team will contact you shortly.');
+  this.reset();
+});
+</script>
+</body>
+</html>
