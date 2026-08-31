@@ -283,6 +283,92 @@ p { color: var(--ink-soft); }
 .location-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--navy); }
 .location-card p { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 4px; }
 
+/* ---------- Section with photo background ---------- */
+.section-photo-bg {
+  position: relative;
+  padding: 100px 24px;
+  overflow: hidden;
+}
+.section-photo-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.section-photo-bg .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,25,45,0.78), rgba(15,25,45,0.85));
+  z-index: 1;
+}
+.section-photo-bg .wrap {
+  position: relative;
+  z-index: 2;
+}
+.section-photo-bg .eyebrow { color: var(--sky); }
+.section-photo-bg h2, .section-photo-bg h3 { color: #fff; }
+.section-photo-bg p { color: rgba(255,255,255,0.8); }
+.section-photo-bg .check-list li { color: #fff; }
+.section-photo-bg .check-list li svg { color: var(--sky); }
+
+/* ---------- Featured quote banner (photo background) ---------- */
+.quote-banner {
+  position: relative;
+  padding: 120px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+.quote-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.quote-banner .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,25,45,0.72), rgba(15,25,45,0.82));
+  z-index: 1;
+}
+.quote-banner .quote-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.quote-banner .quote-mark {
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  color: var(--sky);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.quote-banner blockquote {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  color: #fff;
+  line-height: 1.4;
+  margin: 0 0 32px;
+}
+.quote-banner .quote-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.quote-banner .quote-detail {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+}
+
 /* ---------- Testimonial ---------- */
 .testimonial {
   background: var(--sky-tint);
