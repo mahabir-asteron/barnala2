@@ -418,11 +418,13 @@ p { color: var(--ink-soft); }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
   gap: 32px;
   margin-bottom: 40px;
 }
-@media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 980px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; } }
+@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .footer-grid { grid-template-columns: 1fr; } }
 .footer-grid h4 {
   color: var(--navy);
   font-family: var(--font-display);
