@@ -1,193 +1,363 @@
-<header class="modern-header">
+/* =========================
+   HEADER — restyled to the site's light/blue theme
+   (adapted from a dark-theme version; colors swapped,
+   structure and interaction behavior kept as-is)
+========================= */
 
-    <div class="modern-nav">
+.modern-header{
+    position:sticky;
+    top:0;
+    z-index:99999;
+    border-bottom:1px solid var(--line);
+}
+.modern-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    z-index:-1;
+}
 
-        <!-- Logo -->
+.modern-nav{
+    width:min(97%,1650px);
+    margin:auto;
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
 
-        <a href="index.html" class="modern-logo">
+.modern-logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    flex-shrink:0;
+}
 
-            <img src="images/logo.jpg" alt="Barnala Driver Training Academy">
+.modern-logo img{
+    width:42px;
+    height:42px;
+    object-fit:cover;
+    border-radius:8px;
+}
 
-            <div class="logo-content">
-                <span class="logo-title">BARNALA</span>
-                <span class="logo-subtitle">DRIVER TRAINING ACADEMY</span>
-            </div>
+.logo-content{
+    display:flex;
+    flex-direction:column;
+}
 
-        </a>
+.logo-title{
+    color:var(--navy);
+    font-size:17px;
+    font-weight:800;
+    line-height:1;
+}
 
-        <!-- Mobile Button -->
+.logo-subtitle{
+    color:var(--blue);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.4px;
+    margin-top:4px;
+    white-space:nowrap;
+}
 
-        <button class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+.modern-links{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    margin-left:auto;
+}
 
-        <!-- Overlay -->
+.modern-links>a,
+.dropdown-toggle{
+    background:none;
+    border:none;
+    color:var(--ink);
+    text-decoration:none;
+    cursor:pointer;
+    white-space:nowrap;
+    font-size:11px;
+    font-weight:650;
+    letter-spacing:.1px;
+    padding:6px 7px;
+    transition:.25s;
+}
 
-        <div class="menu-overlay" id="menuOverlay"></div>
+.modern-links>a:hover,
+.dropdown-toggle:hover{
+    color:var(--blue);
+}
 
-        <!-- Navigation -->
+/* =========================
+   DROPDOWN
+========================= */
 
-        <nav class="modern-links" id="mainMenu">
+.menu-item{
+    position:relative;
+}
 
-            <button class="menu-close" id="menuClose">&#10005;</button>
+.dropdown-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
 
-            <!-- ENROLL -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">ENROLL</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Courses</h4>
-                        <a href="check-enroll.html">Class 1</a>
-                        <a href="enroll-class3.html">Class 3</a>
-                        <a href="enroll-class5.html">Class 5</a>
-                        <a href="enroll-air-brake.html">Air Brake</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>Exclusive Courses</h4>
-                        <a href="hours-of-service.html">Hours of Service</a>
-                        <a href="load-securement.html">Load Securement</a>
-                        <a href="dangerous-goods.html">Dangerous Goods</a>
-                        <a href="vehicle-inspection.html">Vehicle Inspection</a>
-                        <a href="winter-driving.html">Winter Driving Course</a>
-                    </div>
-                </div>
-            </div>
+.dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:0%;
+    transform:translateY(15px);
 
-            <!-- CLASS 1 -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">CLASS 1</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Class 1 Programs</h4>
-                        <a href="class-1-121-hours.html">Class 1 (121.5 Hrs)</a>
-                        <a href="class-1-244-hours.html">Class 1 (244 Hrs)</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="check-eligibility.html">Check Eligibility</a>
-                        <a href="check-enroll.html">Enroll</a>
-                        <a href="handbooks-class1.html">Handbook</a>
-                        <a href="quiz-class1.html">Quiz Practice</a>
-                        <a href="compare.html">Compare</a>
-                        <a href="funding.html">Financing</a>
-                    </div>
-                </div>
-            </div>
+    width:500px;
+    max-width:90vw;
 
-            <!-- CLASS 3 -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">CLASS 3</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Class 3 Program</h4>
-                        <a href="class-3.html">Class 3 Combination Vehicle</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="eligibility-class3.html">Check Eligibility</a>
-                        <a href="enroll-class3.html">Enroll</a>
-                        <a href="quiz-class3.html">Quiz Practice</a>
-                    </div>
-                </div>
-            </div>
+    background:#fff;
+    border:1px solid var(--line);
+    border-top:3px solid var(--blue);
+    border-radius:14px;
 
-            <!-- CLASS 5 -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">CLASS 5</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Dive Into Class 5</h4>
-                        <a href="class-5.html">Class 5</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="eligibility-class5.html">Check Eligibility</a>
-                        <a href="enroll-class5.html">Enroll</a>
-                        <a href="handbooks-class5.html">Handbook</a>
-                        <a href="quiz-class5.html">Quiz Practice</a>
-                    </div>
-                </div>
-            </div>
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
 
-            <!-- AIR BRAKE -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">AIR BRAKE</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Dive Into Air Brake</h4>
-                        <a href="air-brake.html">Air Brake Course</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="eligibility-air-brake.html">Check Eligibility</a>
-                        <a href="enroll-air-brake.html">Enroll</a>
-                        <a href="handbooks-air-brake.html">Handbook</a>
-                        <a href="quiz-air-brake.html">Quiz Practice</a>
-                    </div>
-                </div>
-            </div>
+    padding:28px 35px;
 
-            <!-- EXCLUSIVE COURSES -->
-            <div class="menu-item has-dropdown">
-                <button class="dropdown-toggle">EXCLUSIVE COURSES</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Dive Into Exclusive Courses</h4>
-                        <a href="hours-of-service.html">Hours of Service</a>
-                        <a href="load-securement.html">Load Securement</a>
-                        <a href="dangerous-goods.html">Dangerous Goods</a>
-                        <a href="vehicle-inspection.html">Vehicle Inspection</a>
-                        <a href="winter-driving.html">Winter Driving Course</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="exclusive-courses-enroll.html">Enroll</a>
-                        <a href="fees.html">Fees</a>
-                        <a href="exclusive-courses-handbook.html">Handbook</a>
-                    </div>
-                </div>
-            </div>
+    opacity:0;
+    visibility:hidden;
 
-            <a href="course-schedule.html">COURSE SCHEDULE</a>
+    transition:all .3s ease;
 
-            <!-- CORPORATE -->
-            <div class="menu-item has-dropdown corporate-menu">
-                <button class="dropdown-toggle">CORPORATE</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Dive Into Corporate</h4>
-                        <a href="corporate.html">Corporate</a>
-                    </div>
-                    <div class="dropdown-column">
-                        <h4>More</h4>
-                        <a href="pre-employment-test.html">Pre Employment Test</a>
-                        <a href="driver-employment.html">Driver Improvement</a>
-                    </div>
-                </div>
-            </div>
+    box-shadow:0 20px 50px rgba(27,46,92,.16);
 
-            <a href="excelerate.html">EXCELERATE</a>
-            <a href="#">BLOGS</a>
-            <a href="gallery.html">GALLERY</a>
+    z-index:99999;
+}
 
-            <!-- LOCATIONS -->
-            <div class="menu-item has-dropdown locations-menu">
-                <button class="dropdown-toggle">LOCATIONS</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-column">
-                        <h4>Our Locations</h4>
-                        <a href="winnipeg-driving-courses.html">Winnipeg</a>
-                        <a href="steinbach-driving-courses.html">Steinbach</a>
-                    </div>
-                </div>
-            </div>
+.dropdown-column{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+}
 
-            <a href="contact-us.html">CONTACT</a>
+.dropdown-column h4{
+    color:var(--blue);
+    font-size:11px;
+    letter-spacing:1.5px;
+    margin-bottom:10px;
+    text-transform:uppercase;
+}
 
-        </nav>
+.dropdown-column a{
+    display:block;
+    width:100%;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    padding:8px 0;
+    line-height:1.5;
+}
 
-    </div>
+.dropdown-column a:hover{
+    color:var(--blue);
+    padding-left:6px;
+}
 
-</header>
+/*==========================
+CORPORATE
+==========================*/
+
+.corporate-menu .dropdown-menu{
+    width:380px;
+    left:auto;
+    right:0;
+}
+
+/*==========================
+LOCATIONS
+==========================*/
+
+.locations-menu .dropdown-menu{
+    width:240px;
+    left:auto;
+    right:0;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.menu-toggle{
+    display:none;
+    width:52px;
+    height:52px;
+    background:var(--blue);
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    position:relative;
+    z-index:99998;
+}
+
+.menu-toggle span{
+    position:absolute;
+    left:12px;
+    width:28px;
+    height:3px;
+    background:#fff;
+    transition:.3s;
+}
+
+.menu-toggle span:nth-child(1){top:16px;}
+.menu-toggle span:nth-child(2){top:24px;}
+.menu-toggle span:nth-child(3){top:32px;}
+
+.menu-toggle.active span:nth-child(1){
+    transform:rotate(45deg);
+    top:24px;
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform:rotate(-45deg);
+    top:24px;
+}
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(20,30,50,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:99998;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu-close{
+    display:none;
+}
+
+@media(max-width:1200px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .modern-links{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:100%;
+        height:100vh;
+        height:100dvh;
+        min-height:100vh;
+        background:#fff !important;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0;
+        padding:90px 28px 40px;
+        overflow-y:auto;
+        transition:right .35s ease;
+        z-index:100000;
+    }
+
+    .modern-links.active{
+        right:0;
+    }
+
+    .menu-item{
+        width:100%;
+    }
+
+    .has-dropdown{
+        width:100%;
+    }
+
+    .dropdown-toggle{
+        justify-content:space-between;
+    }
+
+    .modern-links>a,
+    .dropdown-toggle{
+        width:100%;
+        text-align:left;
+        padding:18px 0;
+        border-bottom:1px solid var(--line);
+        font-size:17px;
+    }
+
+    .menu-close{
+        display:block;
+        position:absolute;
+        top:20px;
+        right:20px;
+        background:none;
+        border:none;
+        color:var(--ink);
+        font-size:34px;
+        cursor:pointer;
+        z-index:100002;
+    }
+
+    .dropdown-menu{
+        position:static;
+        display:grid;
+        grid-template-columns:1fr;
+        width:100%;
+        max-width:100%;
+        max-height:0;
+        overflow:hidden;
+        margin:0;
+        padding:0;
+        background:var(--sky-tint);
+        border-top:none;
+        box-shadow:none;
+        left:auto;
+        top:auto;
+        transform:none;
+        opacity:1;
+        visibility:visible;
+        transition:max-height .35s ease,padding .35s ease;
+        box-sizing:border-box;
+        border-radius: var(--radius);
+    }
+
+    .dropdown-column{
+        width:100%;
+    }
+
+    .dropdown-column a{
+        display:block;
+        width:100%;
+        padding:10px 0;
+        white-space:normal;
+    }
+
+    .has-dropdown.open .dropdown-menu{
+        max-height:700px;
+        padding:16px;
+        margin-top:10px;
+    }
+}
+
+@media(min-width:1201px){
+    .has-dropdown:hover .dropdown-menu{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+}
