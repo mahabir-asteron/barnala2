@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Barnala Driving School Winnipeg | Request a Callback</title>
+<meta name="description" content="Contact Barnala Driver Training Academy in Winnipeg, MB. Call, email, or request a callback about our driver training programs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; } }
+  .form-field { margin-bottom: 18px; }
+  .form-field label { display: block; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; color: var(--navy); margin-bottom: 6px; }
+  .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); font-family: var(--font-body); font-size: 0.95rem; color: var(--ink); background: #fff; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(44,111,196,0.15); }
+  .contact-info-card { background: var(--sky-tint); border-radius: var(--radius); padding: 32px; }
+  .contact-info-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .contact-info-card .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+  .contact-info-card .row:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
 
+<div id="header-placeholder"></div>
+
+<section class="hero" style="padding:64px 0 64px;">
+  <div class="wrap" style="max-width:720px;">
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Let's Find the <em>Right Program</em> for You</h1>
+    <p class="lead">Call, email, or fill out the form below and we'll get back to you about scheduling and pricing.</p>
+  </div>
+</section>
+<div class="lane-divider"></div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div>
+        <div class="section-head" style="margin-bottom:24px;">
+          <p class="eyebrow">Call Back Request</p>
+          <h2 style="font-size:1.6rem;">Send Us a Message</h2>
+        </div>
+        <!--
+          This form uses a "mailto" action, which opens the visitor's
+          email app with the message pre-filled — it works with zero
+          setup, but requires them to hit "send" themselves.
+          For a form that submits silently in the background, sign up
+          for a free plan at https://formspree.io and swap the
+          action="mailto:..." line below for the endpoint they give you.
+        -->
+        <form action="mailto:mail@barnala.ca" method="POST" enctype="text/plain">
+          <div class="form-field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="Name" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="Phone" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div class="form-field">
+            <label for="program">Program of Interest</label>
+            <select id="program" name="Program">
+              <option>Class 1</option>
+              <option>Class 3</option>
+              <option>Class 5</option>
+              <option>Air Brake</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Request</button>
+        </form>
+      </div>
+
+      <div>
+        <div class="contact-info-card">
+          <h3>Address</h3>
+          <p style="margin-bottom:8px;">28 Roy Roche Drive,<br>Winnipeg, MB<br>R3C 2E6</p>
+          <a href="https://maps.google.com/?q=28+Roy+Roche+Drive+Winnipeg+MB+R3C+2E6" target="_blank" rel="noopener" style="display:inline-block; margin-bottom:18px; font-family:var(--font-display); text-transform:uppercase; font-size:0.8rem; letter-spacing:0.03em; color:var(--blue); border-bottom:2px solid var(--sky); padding-bottom:2px;">Get Directions</a>
+          <h3 style="margin-top:8px;">Working Hours</h3>
+          <div class="row"><span>Monday</span><span>08:00 a.m. &ndash; 04:30 p.m.</span></div>
+          <div class="row"><span>Tuesday</span><span>08:00 a.m. &ndash; 04:30 p.m.</span></div>
+          <div class="row"><span>Wednesday</span><span>08:00 a.m. &ndash; 04:30 p.m.</span></div>
+          <div class="row"><span>Thursday</span><span>08:00 a.m. &ndash; 04:30 p.m.</span></div>
+          <div class="row"><span>Friday</span><span>08:00 a.m. &ndash; 04:30 p.m.</span></div>
+          <div class="row"><span>Saturday</span><span>08:00 a.m. &ndash; 02:00 p.m.</span></div>
+          <div class="row"><span>Sunday</span><span>Closed</span></div>
+        </div>
+        <div style="margin-top:20px;">
+          <p><strong style="color:var(--navy);">Phone:</strong> <a href="tel:+12042152222" style="color:var(--blue);">(204) 215-2222</a></p>
+          <p><strong style="color:var(--navy);">Email:</strong> <a href="mailto:mail@barnala.ca" style="color:var(--blue);">mail@barnala.ca</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Gallery</p>
+      <h2>Visit Us</h2>
+    </div>
+    <div class="photo-grid">
+      <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add a photo of the front desk / office</span></div>
+      <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add a photo of the team</span></div>
+      <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add a photo of the parking lot</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/include.js"></script>
+</body>
+</html>
