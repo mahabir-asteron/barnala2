@@ -471,6 +471,20 @@ p { color: var(--ink-soft); }
   gap: 10px;
   font-size: 0.82rem;
 }
+.footer-policy-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+}
+.footer-policy-row a { color: var(--ink-soft); }
+.footer-policy-row a:hover { color: var(--blue); }
+.footer-policy-row span { color: var(--line); }
 
 /* Placeholder image block — replace with real photos */
 .img-placeholder {
