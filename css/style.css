@@ -602,6 +602,11 @@ p { color: var(--ink-soft); }
   letter-spacing: 0.04em;
 }
 
+.stats-table tr:nth-child(even) td {
+  background: #d6e4f2 !important;
+  color: #26364d !important;
+}
+
 /* White row */
 .stats-table tr:nth-child(odd) td {
   background: #fff;
