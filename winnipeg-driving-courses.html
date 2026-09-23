@@ -173,58 +173,199 @@
       <h2>What Our Students Say</h2>
     </div>
 
-    <div class="course-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="testimonial-slider">
 
-      <!-- Review 1 -->
-      <div class="testimonial-card">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-track">
 
-        <p>
-          "I passed my Class 1 license test on the first attempt! Great
-          instructors and flexible training hours. Highly recommend Barnala
-          in Winnipeg."
-        </p>
+        <!-- Review 1 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
 
-        <div class="name" style="margin-top:10px; font-weight:600;">
-          Harpreet S., Winnipeg
+            <p>
+              "I passed my Class 1 license test on the first attempt! Great
+              instructors and flexible training hours. Highly recommend Barnala
+              in Winnipeg."
+            </p>
+
+            <div class="name">
+              Harpreet S., Winnipeg
+            </div>
+          </div>
         </div>
+
+
+        <!-- Review 2 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+
+            <p>
+              "The instructors were very helpful and explained everything clearly.
+              The hands-on training gave me much more confidence behind the wheel."
+            </p>
+
+            <div class="name">
+              Mahabir Singh
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Review 3 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+
+            <p>
+              "I had a great experience with Barnala Driver Training Academy.
+              The training was well organized and the instructors were supportive
+              throughout the program."
+            </p>
+
+            <div class="name">
+              Liam Parker
+            </div>
+          </div>
+        </div>
+
       </div>
 
+      <button class="testimonial-prev" type="button" aria-label="Previous review">
+        &#10094;
+      </button>
 
-      <!-- Review 2 -->
-      <div class="testimonial-card">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-
-        <p>
-          "The instructors were very helpful and explained everything clearly.
-          The hands-on training gave me much more confidence behind the wheel."
-        </p>
-
-        <div class="name" style="margin-top:10px; font-weight:600;">
-          Mahabir Singh
-        </div>
-      </div>
-
-
-      <!-- Review 3 -->
-      <div class="testimonial-card">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-
-        <p>
-          "I had a great experience with Barnala Driver Training Academy. The
-          training was well organized and the instructors were supportive
-          throughout the program."
-        </p>
-
-        <div class="name" style="margin-top:10px; font-weight:600;">
-          Liam Parker
-        </div>
-      </div>
+      <button class="testimonial-next" type="button" aria-label="Next review">
+        &#10095;
+      </button>
 
     </div>
 
   </div>
 </section>
+
+
+<style>
+.testimonial-slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.7s ease;
+}
+
+.testimonial-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 0 35px;
+}
+
+.testimonial-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.testimonial-card .name {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.testimonial-prev,
+.testimonial-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.testimonial-prev {
+  left: 0;
+}
+
+.testimonial-next {
+  right: 0;
+}
+
+.testimonial-prev:hover,
+.testimonial-next:hover {
+  background: var(--blue);
+}
+
+@media (max-width: 600px) {
+  .testimonial-slide {
+    padding: 0 5px;
+  }
+
+  .testimonial-prev,
+  .testimonial-next {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const track = document.querySelector(".testimonial-track");
+  const slides = document.querySelectorAll(".testimonial-slide");
+  const nextBtn = document.querySelector(".testimonial-next");
+  const prevBtn = document.querySelector(".testimonial-prev");
+
+  let currentSlide = 0;
+  let autoSlide;
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 5000);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  nextBtn.addEventListener("click", function () {
+    nextSlide();
+    resetAutoSlide();
+  });
+
+  prevBtn.addEventListener("click", function () {
+    prevSlide();
+    resetAutoSlide();
+  });
+
+  startAutoSlide();
+
+});
+</script>
 
 <section class="section section-alt">
   <div class="wrap" style="max-width:780px;">
