@@ -490,27 +490,20 @@
   <div class="wrap" style="max-width:980px;">
 
     <div class="section-head">
-
       <p class="eyebrow">Testimonial</p>
-
       <h2>What Students Are Saying</h2>
-
     </div>
 
+    <div class="review-slider">
 
-    <div class="testimonial-slider">
-
-      <div class="testimonial-track">
-
+      <div class="review-track">
 
         <!-- REVIEW 1 -->
+        <div class="review-slide">
+          <div class="review-box">
 
-        <div class="testimonial-slide">
-
-          <div class="testimonial-card">
-
-            <div class="stars">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="review-stars">
+              ★★★★★
             </div>
 
             <p>
@@ -518,23 +511,20 @@
               attempt. They care about your success!"
             </p>
 
-            <div class="name">
-              &ndash; Gagandeep S., Portage la Prairie
-            </div>
+            <strong>
+              – Gagandeep S., Portage la Prairie
+            </strong>
 
           </div>
-
         </div>
 
 
         <!-- REVIEW 2 -->
+        <div class="review-slide">
+          <div class="review-box">
 
-        <div class="testimonial-slide">
-
-          <div class="testimonial-card">
-
-            <div class="stars">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="review-stars">
+              ★★★★★
             </div>
 
             <p>
@@ -542,23 +532,20 @@
               and the pricing was affordable!"
             </p>
 
-            <div class="name">
-              &ndash; Harjit K., Winnipeg
-            </div>
+            <strong>
+              – Harjit K., Winnipeg
+            </strong>
 
           </div>
-
         </div>
 
 
         <!-- REVIEW 3 -->
+        <div class="review-slide">
+          <div class="review-box">
 
-        <div class="testimonial-slide">
-
-          <div class="testimonial-card">
-
-            <div class="stars">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="review-stars">
+              ★★★★★
             </div>
 
             <p>
@@ -566,28 +553,28 @@
               feel confident and prepared for my driving test."
             </p>
 
-            <div class="name">
-              &ndash; Student Review
-            </div>
+            <strong>
+              – Student Review
+            </strong>
 
           </div>
-
         </div>
-
 
       </div>
 
 
+      <!-- ARROWS -->
+
       <button
-        class="testimonial-prev"
         type="button"
+        class="review-arrow review-prev"
         aria-label="Previous review">
         &#10094;
       </button>
 
       <button
-        class="testimonial-next"
         type="button"
+        class="review-arrow review-next"
         aria-label="Next review">
         &#10095;
       </button>
@@ -816,86 +803,228 @@
 
 
 <!-- =========================================
-     TESTIMONIAL SLIDER
+     TESTIMONIAL SLIDER CSS
+========================================= -->
+
+<style>
+
+.review-slider {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.review-track {
+  display: flex !important;
+  width: 100%;
+  transition: transform 0.7s ease-in-out;
+  will-change: transform;
+}
+
+.review-slide {
+  flex: 0 0 100% !important;
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 5px 45px;
+}
+
+.review-box {
+  width: 100%;
+  min-height: 190px;
+  box-sizing: border-box;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.review-stars {
+  margin-bottom: 18px;
+  color: #f3b000;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.review-box p {
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.review-box strong {
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+.review-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.review-arrow:hover {
+  background: var(--blue);
+}
+
+.review-prev {
+  left: 0;
+}
+
+.review-next {
+  right: 0;
+}
+
+@media (max-width: 600px) {
+
+  .review-slide {
+    padding: 5px 35px;
+  }
+
+  .review-box {
+    padding: 24px;
+  }
+
+  .review-arrow {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 16px;
+  }
+
+}
+
+</style>
+
+
+<!-- =========================================
+     TESTIMONIAL SLIDER JAVASCRIPT
 ========================================= -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
 
-  const track = document.querySelector(".testimonial-track");
-  const slides = document.querySelectorAll(".testimonial-slide");
-  const nextBtn = document.querySelector(".testimonial-next");
-  const prevBtn = document.querySelector(".testimonial-prev");
+  function initReviewSlider() {
 
-  if (!track || !slides.length) return;
+    const track = document.querySelector(".review-track");
+    const slides = document.querySelectorAll(".review-slide");
+    const next = document.querySelector(".review-next");
+    const prev = document.querySelector(".review-prev");
 
-  let currentSlide = 0;
-  let autoSlide;
+    if (!track || slides.length === 0) {
+      return;
+    }
 
-  function showSlide(index) {
+    let current = 0;
+    let timer = null;
 
-    currentSlide = (index + slides.length) % slides.length;
+    function moveSlider() {
 
-    track.style.transform =
-      `translateX(-${currentSlide * 100}%)`;
+      track.style.transform =
+        "translateX(-" + (current * 100) + "%)";
+
+    }
+
+    function nextSlide() {
+
+      current++;
+
+      if (current >= slides.length) {
+        current = 0;
+      }
+
+      moveSlider();
+
+    }
+
+    function previousSlide() {
+
+      current--;
+
+      if (current < 0) {
+        current = slides.length - 1;
+      }
+
+      moveSlider();
+
+    }
+
+    function startAuto() {
+
+      clearInterval(timer);
+
+      timer = setInterval(function () {
+
+        nextSlide();
+
+      }, 4000);
+
+    }
+
+    if (next) {
+
+      next.addEventListener("click", function () {
+
+        nextSlide();
+        startAuto();
+
+      });
+
+    }
+
+    if (prev) {
+
+      prev.addEventListener("click", function () {
+
+        previousSlide();
+        startAuto();
+
+      });
+
+    }
+
+    /* Start from first review */
+    current = 0;
+    moveSlider();
+
+    /* Automatic rotation */
+    startAuto();
 
   }
 
-  function nextSlide() {
-    showSlide(currentSlide + 1);
-  }
 
-  function prevSlide() {
-    showSlide(currentSlide - 1);
-  }
+  if (document.readyState === "loading") {
 
-  function startAutoSlide() {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initReviewSlider
+    );
 
-    autoSlide = setInterval(function () {
-      nextSlide();
-    }, 5000);
+  } else {
+
+    initReviewSlider();
 
   }
 
-  function resetAutoSlide() {
-
-    clearInterval(autoSlide);
-
-    startAutoSlide();
-
-  }
-
-  if (nextBtn) {
-
-    nextBtn.addEventListener("click", function () {
-
-      nextSlide();
-
-      resetAutoSlide();
-
-    });
-
-  }
-
-  if (prevBtn) {
-
-    prevBtn.addEventListener("click", function () {
-
-      prevSlide();
-
-      resetAutoSlide();
-
-    });
-
-  }
-
-  startAutoSlide();
-
-});
+})();
 
 </script>
-
 
 <script src="js/include.js"></script>
 
