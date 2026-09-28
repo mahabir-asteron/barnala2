@@ -88,6 +88,27 @@
   .thank-you { text-align:center; }
 
   .hero-actions-wizard { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:28px; }
+
+  .select-wrap {
+  position: relative;
+}
+
+.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: var(--ink);
+  pointer-events: none;
+}
+  
 </style>
 
 </head>
@@ -430,14 +451,18 @@ function showEnrollmentForm(){
                 <input id="course" type="text" value="Class 3 Driver Training" readonly>
             </div>
             <div class="form-group">
-                <label for="branch">Preferred Branch *</label>
-                <select id="branch" name="branch" required>
-                    <option value="">Select Branch</option>
-                    <option>Winnipeg</option>
-                    <option>Steinbach</option>
-                </select>
-            </div>
-        </div>
+  <label for="branch">Preferred Branch *</label>
+
+  <div class="select-wrap">
+    <select id="branch" name="branch" required>
+      <option value="">Select Branch</option>
+      <option>Winnipeg</option>
+      <option>Steinbach</option>
+    </select>
+
+    <span class="select-arrow">⌄</span>
+  </div>
+</div>
         <div class="form-row">
             <div class="form-group">
                 <label for="startDate">Preferred Start Date</label>
