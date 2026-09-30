@@ -793,3 +793,19 @@ p { color: var(--ink-soft); }
   position: relative;
   z-index: 2;
 }
+
+/* Hero image movement only — do not change the heading */
+.photo-hero-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-hero-banner > img {
+  height: 115%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.photo-hero-banner .overlay {
+  z-index: 1;
+}
