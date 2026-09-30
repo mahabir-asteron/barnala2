@@ -82,38 +82,43 @@ function setupMobileNav() {
   });
 }
 
-/* Fixed hero background with upward movement on all pages */
+/* Fixed hero background with subtle upward movement on all pages */
 (function () {
   function setupHeroBackgrounds() {
-    const heroes = document.querySelectorAll(".photo-hero-banner");
+    document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
+      var img = hero.querySelector(":scope > img");
 
-    heroes.forEach(function (hero) {
-      const img = hero.querySelector(":scope > img");
+      if (!img) return;
 
-      if (img && !hero.classList.contains("hero-fixed-bg")) {
-        hero.style.backgroundImage = `url("${img.src}")`;
-        hero.classList.add("hero-fixed-bg");
-      }
+      hero.style.backgroundImage = 'url("' + img.src + '")';
+      hero.classList.add("hero-fixed-bg");
     });
+
+    updateHeroBackgrounds();
   }
 
   function updateHeroBackgrounds() {
-    const movement = window.scrollY * 0.12;
-
     document.querySelectorAll(
       ".photo-hero-banner.hero-fixed-bg"
     ).forEach(function (hero) {
+      var rect = hero.getBoundingClientRect();
+
+      /* Move the image upward gradually while scrolling */
+      var progress = Math.max(
+        0,
+        Math.min(1, -rect.top / Math.max(rect.height, 1))
+      );
+
+      var movement = progress * 40;
+
       hero.style.backgroundPosition =
-        `center calc(50% - ${movement}px)`;
+        "center calc(50% - " + movement + "px)";
     });
   }
 
-  setupHeroBackgrounds();
-  updateHeroBackgrounds();
+  var ticking = false;
 
-  let ticking = false;
-
-  window.addEventListener("scroll", function () {
+  function onScroll() {
     if (ticking) return;
 
     ticking = true;
@@ -122,6 +127,18 @@ function setupMobileNav() {
       updateHeroBackgrounds();
       ticking = false;
     });
-  }, { passive: true });
-})();
+  }
 
+  function init() {
+    setupHeroBackgrounds();
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
