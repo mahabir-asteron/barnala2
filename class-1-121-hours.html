@@ -9,13 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/style.css">
+  <style>
+.class1-121-hero {
+  background-image: url("images/class1-1.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
-<section class="photo-hero-banner" style="height:70vh; min-height:340px;">
-  <img src="images/class1-1.webp" alt="Barnala Class 1 training truck and trailer">
+<section class="photo-hero-banner class1-121-hero" style="height:70vh; min-height:340px;">
   <div class="overlay">
     <h1>Class 1 Driver Training in Winnipeg<br><em>(121.5 Hours)</em></h1>
   </div>
@@ -201,5 +209,17 @@
 <div id="footer-placeholder"></div>
 
 <script src="js/include.js"></script>
+  <script>
+const class1121Hero = document.querySelector(".class1-121-hero");
+
+window.addEventListener("scroll", () => {
+  if (!class1121Hero) return;
+
+  const movement = window.scrollY * 0.12;
+
+  class1121Hero.style.backgroundPosition =
+    `center calc(50% - ${movement}px)`;
+}, { passive: true });
+</script>
 </body>
 </html>
