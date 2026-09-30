@@ -772,3 +772,24 @@ p { color: var(--ink-soft); }
   font-size: 0.82rem;
   padding: 10px 12px;
 }
+
+/* Fixed hero background for all pages */
+.photo-hero-banner.hero-fixed-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* Hide the original image after JavaScript sets it as the background */
+.photo-hero-banner.hero-fixed-bg > img {
+  display: none;
+}
+
+/* Keep hero text visible */
+.photo-hero-banner.hero-fixed-bg .overlay {
+  position: relative;
+  z-index: 2;
+}
