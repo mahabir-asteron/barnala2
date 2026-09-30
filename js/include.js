@@ -82,36 +82,34 @@ function setupMobileNav() {
   });
 }
 
-/* Fixed hero background with slight upward movement */
+/* Fixed hero background with upward scroll movement */
 (function () {
   function setupHeroBackgrounds() {
     document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
       const img = hero.querySelector(":scope > img");
-      if (!img || hero.dataset.heroBgReady) return;
 
-      hero.dataset.heroBgReady = "true";
+      if (!img || hero.dataset.fixedBgReady) return;
 
-      // Use the existing image as the hero background
-      hero.style.backgroundImage = 'url("' + img.src + '")';
-      hero.style.backgroundSize = "cover";
-      hero.style.backgroundRepeat = "no-repeat";
-      hero.style.backgroundPosition = "center center";
+      hero.dataset.fixedBgReady = "true";
 
-      // Hide the original image without affecting the heading
+      const bg = document.createElement("div");
+      bg.className = "hero-fixed-background";
+      bg.style.backgroundImage = 'url("' + img.src + '")';
+
+      hero.insertBefore(bg, img);
       img.style.visibility = "hidden";
     });
   }
 
   function updateHeroBackgrounds() {
     document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
+      const bg = hero.querySelector(".hero-fixed-background");
+      if (!bg) return;
+
       const rect = hero.getBoundingClientRect();
-
-      if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
-
       const movement = Math.max(0, Math.min(40, -rect.top * 0.12));
 
-      hero.style.backgroundPosition =
-        "center calc(50% - " + movement + "px)";
+      bg.style.transform = "translate3d(0, -" + movement + "px, 0)";
     });
   }
 
@@ -127,6 +125,5 @@ function setupMobileNav() {
   window.addEventListener("resize", refresh);
   window.addEventListener("load", refresh);
   document.addEventListener("DOMContentLoaded", refresh);
-
   refresh();
 })();
