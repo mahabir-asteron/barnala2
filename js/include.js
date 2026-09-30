@@ -124,3 +124,38 @@ function setupMobileNav() {
     });
   }, { passive: true });
 })();
+
+/* Move hero images slightly upward while scrolling */
+(function () {
+  function initHeroParallax() {
+    const heroes = document.querySelectorAll(".photo-hero-banner");
+
+    function updateHeroImages() {
+      heroes.forEach(function (hero) {
+        const img = hero.querySelector(":scope > img");
+        if (!img) return;
+
+        const rect = hero.getBoundingClientRect();
+
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          const movement = Math.max(
+            0,
+            Math.min(40, (window.innerHeight - rect.top) * 0.04)
+          );
+
+          img.style.transform = "translate3d(0, -" + movement + "px, 0)";
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateHeroImages, { passive: true });
+    window.addEventListener("resize", updateHeroImages);
+    updateHeroImages();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeroParallax);
+  } else {
+    initHeroParallax();
+  }
+})();
