@@ -81,3 +81,46 @@ function setupMobileNav() {
     }
   });
 }
+
+/* Fixed hero background with upward movement on all pages */
+(function () {
+  function setupHeroBackgrounds() {
+    const heroes = document.querySelectorAll(".photo-hero-banner");
+
+    heroes.forEach(function (hero) {
+      const img = hero.querySelector(":scope > img");
+
+      if (img && !hero.classList.contains("hero-fixed-bg")) {
+        hero.style.backgroundImage = `url("${img.src}")`;
+        hero.classList.add("hero-fixed-bg");
+      }
+    });
+  }
+
+  function updateHeroBackgrounds() {
+    const movement = window.scrollY * 0.12;
+
+    document.querySelectorAll(
+      ".photo-hero-banner.hero-fixed-bg"
+    ).forEach(function (hero) {
+      hero.style.backgroundPosition =
+        `center calc(50% - ${movement}px)`;
+    });
+  }
+
+  setupHeroBackgrounds();
+  updateHeroBackgrounds();
+
+  let ticking = false;
+
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+
+    ticking = true;
+
+    window.requestAnimationFrame(function () {
+      updateHeroBackgrounds();
+      ticking = false;
+    });
+  }, { passive: true });
+})();
