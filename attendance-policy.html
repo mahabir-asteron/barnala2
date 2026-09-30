@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/style.css">
 
+     <style>
+.attendance-hero {
+  background-image: url("images/attendance-policy.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>
 </head>
 
 <body>
@@ -28,9 +37,7 @@
      HERO
 ========================================= -->
 
-<section class="photo-hero-banner">
-  <img src="images/hero-trucks.webp" alt="Barnala Driver Training Academy Attendance Policy">
-
+<section class="photo-hero-banner attendance-hero">
   <div class="overlay">
     <h1>Attendance <em>Policy</em></h1>
   </div>
@@ -158,6 +165,18 @@
 ========================================= -->
 
 <script src="js/include.js"></script>
+     
+<script>
+const attendanceHero = document.querySelector(".attendance-hero");
 
+window.addEventListener("scroll", () => {
+  if (!attendanceHero) return;
+
+  const movement = window.scrollY * 0.12;
+
+  attendanceHero.style.backgroundPosition =
+    `center calc(50% - ${movement}px)`;
+}, { passive: true });
+</script>
 </body>
 </html>
