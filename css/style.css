@@ -772,13 +772,3 @@ p { color: var(--ink-soft); }
   font-size: 0.82rem;
   padding: 10px 12px;
 }
-
-/* Fixed hero background for all pages */
-.photo-hero-banner.hero-fixed-bg {
-  position: relative;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow: hidden;
-}
