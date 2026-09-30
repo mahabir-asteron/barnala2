@@ -782,30 +782,3 @@ p { color: var(--ink-soft); }
   background-attachment: fixed;
   overflow: hidden;
 }
-
-/* Hide the original image after JavaScript sets it as the background */
-.photo-hero-banner.hero-fixed-bg > img {
-  display: none;
-}
-
-/* Keep hero text visible */
-.photo-hero-banner.hero-fixed-bg .overlay {
-  position: relative;
-  z-index: 2;
-}
-
-/* Hero image movement only — do not change the heading */
-.photo-hero-banner {
-  position: relative;
-  overflow: hidden;
-}
-
-.photo-hero-banner > img {
-  height: 115%;
-  object-fit: cover;
-  object-position: center 40%;
-}
-
-.photo-hero-banner .overlay {
-  z-index: 1;
-}
