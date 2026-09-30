@@ -17,10 +17,6 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
-.corporate-hero img {
-  display: none;
-}
 </style>
   
 </head>
@@ -112,5 +108,17 @@
 
 <div id="footer-placeholder"></div>
 <script src="js/include.js"></script>
+  <script>
+const airBrakeHero = document.querySelector(".air-brake-hero");
+
+window.addEventListener("scroll", () => {
+  if (!airBrakeHero) return;
+
+  const movement = window.scrollY * 0.04;
+
+  airBrakeHero.style.backgroundPosition =
+    `center calc(50% - ${movement}px)`;
+}, { passive: true });
+</script>
 </body>
 </html>
