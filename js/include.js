@@ -82,42 +82,51 @@ function setupMobileNav() {
   });
 }
 
-/* Move hero images slightly upward without changing heading styles */
+/* Fixed hero background with slight upward movement */
 (function () {
-  function updateHeroImages() {
+  function setupHeroBackgrounds() {
     document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
       const img = hero.querySelector(":scope > img");
-      if (!img) return;
+      if (!img || hero.dataset.heroBgReady) return;
 
+      hero.dataset.heroBgReady = "true";
+
+      // Use the existing image as the hero background
+      hero.style.backgroundImage = 'url("' + img.src + '")';
+      hero.style.backgroundSize = "cover";
+      hero.style.backgroundRepeat = "no-repeat";
+      hero.style.backgroundPosition = "center center";
+
+      // Hide the original image without affecting the heading
+      img.style.visibility = "hidden";
+    });
+  }
+
+  function updateHeroBackgrounds() {
+    document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
       const rect = hero.getBoundingClientRect();
 
       if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
 
       const movement = Math.max(0, Math.min(40, -rect.top * 0.12));
 
-      img.style.transform = "translate3d(0, -" + movement + "px, 0)";
+      hero.style.backgroundPosition =
+        "center calc(50% - " + movement + "px)";
     });
   }
 
-  let ticking = false;
+  function refresh() {
+    setupHeroBackgrounds();
+    updateHeroBackgrounds();
+  }
 
   window.addEventListener("scroll", function () {
-    if (ticking) return;
-
-    ticking = true;
-
-    requestAnimationFrame(function () {
-      updateHeroImages();
-      ticking = false;
-    });
+    requestAnimationFrame(updateHeroBackgrounds);
   }, { passive: true });
 
-  window.addEventListener("resize", updateHeroImages);
-  window.addEventListener("load", updateHeroImages);
+  window.addEventListener("resize", refresh);
+  window.addEventListener("load", refresh);
+  document.addEventListener("DOMContentLoaded", refresh);
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", updateHeroImages);
-  } else {
-    updateHeroImages();
-  }
+  refresh();
 })();
