@@ -82,63 +82,42 @@ function setupMobileNav() {
   });
 }
 
-/* Fixed hero background with subtle upward movement on all pages */
+/* Move hero images slightly upward without changing heading styles */
 (function () {
-  function setupHeroBackgrounds() {
+  function updateHeroImages() {
     document.querySelectorAll(".photo-hero-banner").forEach(function (hero) {
-      var img = hero.querySelector(":scope > img");
-
+      const img = hero.querySelector(":scope > img");
       if (!img) return;
 
-      hero.style.backgroundImage = 'url("' + img.src + '")';
-      hero.classList.add("hero-fixed-bg");
-    });
+      const rect = hero.getBoundingClientRect();
 
-    updateHeroBackgrounds();
-  }
+      if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
 
-  function updateHeroBackgrounds() {
-    document.querySelectorAll(
-      ".photo-hero-banner.hero-fixed-bg"
-    ).forEach(function (hero) {
-      var rect = hero.getBoundingClientRect();
+      const movement = Math.max(0, Math.min(40, -rect.top * 0.12));
 
-      /* Move the image upward gradually while scrolling */
-      var progress = Math.max(
-        0,
-        Math.min(1, -rect.top / Math.max(rect.height, 1))
-      );
-
-      var movement = progress * 40;
-
-      hero.style.backgroundPosition =
-        "center calc(50% - " + movement + "px)";
+      img.style.transform = "translate3d(0, -" + movement + "px, 0)";
     });
   }
 
-  var ticking = false;
+  let ticking = false;
 
-  function onScroll() {
+  window.addEventListener("scroll", function () {
     if (ticking) return;
 
     ticking = true;
 
-    window.requestAnimationFrame(function () {
-      updateHeroBackgrounds();
+    requestAnimationFrame(function () {
+      updateHeroImages();
       ticking = false;
     });
-  }
+  }, { passive: true });
 
-  function init() {
-    setupHeroBackgrounds();
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-  }
+  window.addEventListener("resize", updateHeroImages);
+  window.addEventListener("load", updateHeroImages);
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", updateHeroImages);
   } else {
-    init();
+    updateHeroImages();
   }
 })();
