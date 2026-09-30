@@ -11,13 +11,11 @@
 <link rel="stylesheet" href="css/style.css">
   <style>
 .air-brake-hero {
-  position: relative;
   background-image: url("images/air-brake.webp");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  overflow: hidden;
+  background-attachment: fixed;
 }
 </style>
 </head>
@@ -235,16 +233,16 @@
 <div id="footer-placeholder"></div>
 <script src="js/include.js"></script>
   <script>
-document.addEventListener("scroll", function () {
-  const hero = document.querySelector(".air-brake-hero");
-  if (!hero) return;
+const airBrakeHero = document.querySelector(".air-brake-hero");
 
-  const rect = hero.getBoundingClientRect();
-  const scrolled = Math.max(0, -rect.top);
+window.addEventListener("scroll", () => {
+  if (!airBrakeHero) return;
 
-  hero.style.backgroundPosition =
-    `center ${100 - scrolled * 0.04}%`;
-});
+  const movement = window.scrollY * 0.04;
+
+  airBrakeHero.style.backgroundPosition =
+    `center calc(50% - ${movement}px)`;
+}, { passive: true });
 </script>
 </body>
 </html>
