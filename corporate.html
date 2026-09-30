@@ -109,14 +109,14 @@
 <div id="footer-placeholder"></div>
 <script src="js/include.js"></script>
   <script>
-const airBrakeHero = document.querySelector(".air-brake-hero");
+const corporateHero = document.querySelector(".corporate-hero");
 
 window.addEventListener("scroll", () => {
-  if (!airBrakeHero) return;
+  if (!corporateHero) return;
 
   const movement = window.scrollY * 0.06;
 
-  airBrakeHero.style.backgroundPosition =
+  corporateHero.style.backgroundPosition =
     `center calc(50% - ${movement}px)`;
 }, { passive: true });
 </script>
