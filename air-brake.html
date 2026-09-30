@@ -238,7 +238,7 @@ const airBrakeHero = document.querySelector(".air-brake-hero");
 window.addEventListener("scroll", () => {
   if (!airBrakeHero) return;
 
-  const movement = window.scrollY * 0.04;
+  const movement = window.scrollY * 0.06;
 
   airBrakeHero.style.backgroundPosition =
     `center calc(50% - ${movement}px)`;
