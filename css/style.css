@@ -585,14 +585,11 @@ p { color: var(--ink-soft); }
   overflow: hidden;
   border: 1px solid var(--line);
 }
-
-.stats-table th,
-.stats-table td {
+.stats-table th, .stats-table td {
   padding: 14px 18px;
   text-align: left;
   font-size: 0.9rem;
 }
-
 .stats-table th {
   background: linear-gradient(135deg, var(--navy), var(--blue));
   color: #fff;
@@ -601,26 +598,8 @@ p { color: var(--ink-soft); }
   font-size: 0.78rem;
   letter-spacing: 0.04em;
 }
-
-.stats-table tr:nth-child(even) td {
-  background: #d6e4f2 !important;
-  color: #26364d !important;
-}
-
-/* White row */
-.stats-table tr:nth-child(odd) td {
-  background: #fff;
-}
-
-/* Same color as outside */
-.stats-table tr:nth-child(even) td {
-  background: var(--sky-tint);
-}
-
-.stats-table td {
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--line);
-}
+.stats-table tr:nth-child(even) td { background: var(--sky-tint); }
+.stats-table td { color: var(--ink-soft); border-bottom: 1px solid var(--line); }
 
 /* ---------- Testimonial cards ---------- */
 .testimonial-grid {
