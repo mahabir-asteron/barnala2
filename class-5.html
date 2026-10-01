@@ -9,13 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/style.css">
+  <style>
+.class5-hero {
+  background-image: url("images/class5-1.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
-<section class="photo-hero-banner">
-  <img src="images/class5-1.webp" alt="Barnala Class 5 driving lesson">
+<section class="photo-hero-banner class5-hero">
   <div class="overlay">
     <h1>Driving Lessons in <em>Manitoba</em></h1>
   </div>
@@ -233,5 +241,17 @@
 
 <div id="footer-placeholder"></div>
 <script src="js/include.js"></script>
+  <script>
+const class5Hero = document.querySelector(".class5-hero");
+
+window.addEventListener("scroll", () => {
+  if (!class5Hero) return;
+
+  const movement = window.scrollY * 0.12;
+
+  class5Hero.style.backgroundPosition =
+    `center calc(50% - ${movement}px)`;
+}, { passive: true });
+</script>
 </body>
 </html>
